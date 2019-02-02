@@ -14,6 +14,7 @@ namespace ProjektProgramowanie.Infrastructure
         public int Name { get; set; }
         public Shop Shop { get; set; }
         public int Quantity { get; set; }
+        public string Notes { get; set; }
         public DateTime Date { get; set; }
 
         //[Key ]

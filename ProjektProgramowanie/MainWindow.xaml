@@ -5,12 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjektProgramowanie"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="572,244,0,0" VerticalAlignment="Top" Width="75"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="174,65,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="174,108,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="174,156,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        Title="MainWindow" Height="450" Width="650">
+    <Grid Margin="0,0,3.667,-0.333">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="650*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <Button Content="Send" HorizontalAlignment="Left" Margin="350,350,0,0" VerticalAlignment="Top" Width="75" Height="20"/>
+        <TextBox HorizontalAlignment="Left" Height="25" Margin="334,50,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Height="25" Margin="334,100,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Height="25
+                 " Margin="334,200,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <ComboBox HorizontalAlignment="Left" Margin="334,150,0,0" VerticalAlignment="Top" Width="120" Height="22">
+            <ComboBox.Items>
+                <ComboBoxItem>Bakery</ComboBoxItem>
+                <ComboBoxItem>Book Shop</ComboBoxItem>
+                <ComboBoxItem>Butcher</ComboBoxItem>
+                <ComboBoxItem>Hypermarket</ComboBoxItem>
+            </ComboBox.Items>
+        </ComboBox>
+        <DatePicker HorizontalAlignment="Left" Margin="334,258,0,0" VerticalAlignment="Top" Width="120" Height="24"/>
+        <Label Content="What to buy?" HorizontalAlignment="Left" Margin="170,50,0,0" VerticalAlignment="Top" Height="26" Width="75"/>
+        <Label Content="How much?" HorizontalAlignment="Left" Margin="170,100,0,0" VerticalAlignment="Top" RenderTransformOrigin="-3.276,-1.288" Height="26" Width="73"/>
+        <Frame Content="" HorizontalAlignment="Left" Height="99" VerticalAlignment="Top" Width="93" Margin="42,65,0,0"/>
+        <Label Content="Shop" HorizontalAlignment="Left" Margin="170,150,0,0" VerticalAlignment="Top" Height="26" Width="37"/>
+        <Label Content="Notes" HorizontalAlignment="Left" Margin="170,200,0,0" VerticalAlignment="Top" Height="26" Width="41"/>
+        <Label Content="Date" HorizontalAlignment="Left" Margin="170,250,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.083,0.654" Height="26" Width="35"/>
+        <Button Content="Clear" HorizontalAlignment="Left" Margin="450,350,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" Height="20"/>
 
     </Grid>
 </Window>
