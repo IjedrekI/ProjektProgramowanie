@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ProjektProgramowanie.Infrastructure;
+using ProjektProgramowanie.Infrastructure.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace ProjektProgramowanie
 {
     /// <summary>
@@ -24,9 +27,33 @@ namespace ProjektProgramowanie
         {
             InitializeComponent();
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Send_Click(object sender, RoutedEventArgs e)
         {
+            var context = new ToDoContext();
+
+            var shopInString = shopTextBox.Text;
+            Enum.TryParse(shopInString, out Shop shop);
+
+            Worker worker = new Worker()
+            {
+                Name = "Stefan"
+            };
+
+            ToDoItem item = new ToDoItem()
+            {
+                Name = nameTextBox.Text,
+                Shop = shop,
+                Quantity = int.Parse(quantityBox.Text),
+                //Notes = notesTextBox.Text,
+                //Date = datenotesTextBox.Text
+                WorkerId = worker.Id
+
+            };
+
+
+            context.Workers.Add(worker);
+            context.ToDoItems.Add(item);
+            context.SaveChanges();
 
         }
     }

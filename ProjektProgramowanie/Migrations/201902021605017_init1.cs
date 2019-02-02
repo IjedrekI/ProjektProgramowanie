@@ -3,19 +3,20 @@ namespace ProjektProgramowanie.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class two : DbMigration
+    public partial class init1 : DbMigration
     {
         public override void Up()
         {
             CreateTable(
-                "dbo.ToDo",
+                "dbo.ToDoItems",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.Int(nullable: false),
+                        Name = c.String(),
                         Shop = c.Int(nullable: false),
                         Quantity = c.Int(nullable: false),
-                        Date = c.DateTime(nullable: false),
+                        Notes = c.String(),
+                        Date = c.DateTime(),
                         WorkerId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
@@ -35,10 +36,10 @@ namespace ProjektProgramowanie.Migrations
         
         public override void Down()
         {
-            DropForeignKey("dbo.ToDo", "WorkerId", "dbo.Workers");
-            DropIndex("dbo.ToDo", new[] { "WorkerId" });
+            DropForeignKey("dbo.ToDoItems", "WorkerId", "dbo.Workers");
+            DropIndex("dbo.ToDoItems", new[] { "WorkerId" });
             DropTable("dbo.Workers");
-            DropTable("dbo.ToDo");
+            DropTable("dbo.ToDoItems");
         }
     }
 }

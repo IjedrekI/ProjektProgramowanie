@@ -65,6 +65,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Migrations\201902021605017_init1.cs" />
+    <Compile Include="Migrations\201902021605017_init1.Designer.cs">
+      <DependentUpon>201902021605017_init1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ToDoList.xaml.cs">
       <DependentUpon>ToDoList.xaml</DependentUpon>
     </Compile>
@@ -91,11 +96,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201901231931340_two.cs" />
-    <Compile Include="Migrations\201901231931340_two.Designer.cs">
-      <DependentUpon>201901231931340_two.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -109,8 +109,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\201901231931340_two.resx">
-      <DependentUpon>201901231931340_two.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201902021605017_init1.resx">
+      <DependentUpon>201902021605017_init1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

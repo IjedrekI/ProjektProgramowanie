@@ -1,5 +1,7 @@
-﻿using System;
+﻿using ProjektProgramowanie.Infrastructure;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,9 +21,25 @@ namespace ProjektProgramowanie
     /// </summary>
     public partial class ToDoList : Window
     {
+        private readonly ToDoContext _db = new ToDoContext();
+        public static DataGrid datagrid;
+
         public ToDoList()
         {
             InitializeComponent();
         }
+        private async void Load()
+        {
+            //myDataGrid.ItemsSource = await _db.ToDoItem.ToListAsync();
+            //datagrid = myDataGrid;
+        }
+
+
     }
 }
+
+
+
+
+
+
