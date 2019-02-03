@@ -13,7 +13,7 @@
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
         <TextBox x:Name="nameTextBox" HorizontalAlignment="Left" Height="25" Margin="334,50,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
-        <TextBox x:Name="quantityBox" HorizontalAlignment="Left" Height="25" Margin="334,100,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
+        <TextBox MaxLength="2" PreviewTextInput="NumberValidationTextBox" x:Name="quantityBox" HorizontalAlignment="Left" Height="25" Margin="334,100,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
         <ComboBox x:Name="shopTextBox"  HorizontalAlignment="Left" Margin="334,150,0,0" VerticalAlignment="Top" Width="120" Height="22" Grid.ColumnSpan="2">
             <ComboBox.Items>
                 <ComboBoxItem>Bakery</ComboBoxItem>
