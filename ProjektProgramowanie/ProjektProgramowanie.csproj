@@ -65,6 +65,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddTask_Window.xaml.cs">
+      <DependentUpon>AddTask_Window.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\201902021605017_init1.cs" />
     <Compile Include="Migrations\201902021605017_init1.Designer.cs">
       <DependentUpon>201902021605017_init1.cs</DependentUpon>
@@ -73,6 +76,10 @@
     <Compile Include="ToDoList.xaml.cs">
       <DependentUpon>ToDoList.xaml</DependentUpon>
     </Compile>
+    <Page Include="AddTask_Window.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
