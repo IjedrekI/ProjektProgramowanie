@@ -22,21 +22,23 @@ namespace ProjektProgramowanie
     /// </summary>
     public partial class AddTask_Window : Window
     {
+        ToDoContext context = new ToDoContext();
+
         public AddTask_Window()
         {
             InitializeComponent();
+            LoadAvailableWorkers();
         }
         private void AddBtn_Click(object sender, RoutedEventArgs e)
         {
-            var context = new ToDoContext();
-
             var shopInString = shopInput.Text;
             Enum.TryParse(shopInString, out Shop shop);
 
-            Worker worker = new Worker() //transfer
+            Worker hardCodedWorker = new Worker()
             {
                 Name = "Stefan"
             };
+            context.Workers.Add(hardCodedWorker);
 
             ToDoItem item = new ToDoItem() //add validation
             {
@@ -45,10 +47,10 @@ namespace ProjektProgramowanie
                 Quantity = int.Parse(quantityInput.Text),
                 Notes = notesInput.Text,
                 Date = dateInput.SelectedDate.Value.Date,
-                WorkerId = worker.Id //change
+                WorkerId = hardCodedWorker.Id
             };
 
-            context.Workers.Add(worker); //transfer
+
             context.ToDoItems.Add(item);
             context.SaveChanges();
             MainWindow.dataGrid.ItemsSource = context.ToDoItems.ToList();
@@ -58,6 +60,13 @@ namespace ProjektProgramowanie
         {
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
+        }
+        private void LoadAvailableWorkers()
+        {
+            var workerList = (from w in context.Workers
+                      select w).ToList();
+            workerInput.ItemsSource = workerList;
+            workerInput.DisplayMemberPath = "Name";
         }
     }
 }

@@ -45,12 +45,7 @@
         <DatePicker Name="dateInput" Grid.Row="4" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200"/>
 
         <TextBlock Text="Worker" Grid.Row="5" Grid.Column="0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="workerInput" Grid.Row="5" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200">
-            <ComboBox.Items>
-                <ComboBoxItem>John Smith</ComboBoxItem>
-                <ComboBoxItem>Anna Smith</ComboBoxItem>
-            </ComboBox.Items>
-        </ComboBox>
+        <ComboBox x:Name="workerInput" Grid.Row="5" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200"/>
 
         <Button x:Name="okBtn" Content="OK" Click="AddBtn_Click" Grid.Row="6" Grid.Column="6" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="60"/>
     </Grid>

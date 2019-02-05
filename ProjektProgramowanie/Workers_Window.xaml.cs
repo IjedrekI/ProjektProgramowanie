@@ -56,6 +56,7 @@ namespace ProjektProgramowanie
             context.Workers.Remove(deleteItem);
             context.SaveChanges();
             xamlDataGrid.ItemsSource = context.Workers.ToList();
+            MainWindow.dataGrid.ItemsSource = context.ToDoItems.ToList();
         }
     }
 }

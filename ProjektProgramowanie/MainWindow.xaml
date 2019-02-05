@@ -27,8 +27,7 @@
                     <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}"/>
                     <DataGridTextColumn Header="Notes" Binding="{Binding Notes}"/>
                     <DataGridTextColumn Header="Date" Binding="{Binding Date}"/>
-                    <DataGridTextColumn Header="Worker Id" Binding="{Binding WorkerID}"/>
-                    <DataGridTextColumn Header="Worker" Binding="{Binding Worker.Worker}"/>
+                    <DataGridTextColumn Header="Worker's Id" Binding="{Binding WorkerId}"/>
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.HeaderTemplate>
                             <DataTemplate>

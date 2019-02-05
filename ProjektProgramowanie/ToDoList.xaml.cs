@@ -33,8 +33,6 @@ namespace ProjektProgramowanie
             //myDataGrid.ItemsSource = await _db.ToDoItem.ToListAsync();
             //datagrid = myDataGrid;
         }
-
-
     }
 }
 
