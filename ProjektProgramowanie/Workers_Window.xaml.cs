@@ -38,15 +38,15 @@ namespace ProjektProgramowanie
 
         private void InsertBtn_Click(object sender, RoutedEventArgs e)
         {
-            AddWorker_Window aww = new AddWorker_Window();
-            aww.ShowDialog();
+            AddWorker_Window w = new AddWorker_Window();
+            w.ShowDialog();
         }
 
         private void UpdateBtn_Click(object sender, RoutedEventArgs e)
         {
-            int id = (xamlDataGrid.SelectedItem as Worker).Id;
-            //EditToDoItemWindow editToDoItemWindow = new EditToDoItemWindow(id);
-            //editToDoItemWindow.ShowDialog();
+            var selectedRecord = xamlDataGrid.SelectedItem as Worker;
+            //AddWorker_Window w = new AddWorker_Window(selectedRecord);
+            //w.ShowDialog();
         }
 
         private void DeleteBtn_Click(object sender, RoutedEventArgs e)

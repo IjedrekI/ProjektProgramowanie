@@ -26,21 +26,21 @@ namespace ProjektProgramowanie
         }
         private void WorkerBtn_Click(object sender, RoutedEventArgs e)
         {
-            Workers_Window ww = new Workers_Window();
-            ww.Show();
+            Workers_Window w = new Workers_Window();
+            w.Show();
         }
 
         private void InsertBtn_Click(object sender, RoutedEventArgs e)
         {
-            AddTask_Window atw = new AddTask_Window();
-            atw.ShowDialog();
+            AddTask_Window w = new AddTask_Window();
+            w.ShowDialog();
         }
 
         private void UpdateBtn_Click(object sender, RoutedEventArgs e)
         {
-            //int id = (xamlDataGrid.SelectedItem as ToDoItem).Id;
-            //EditToDoItemWindow editToDoItemWindow = new EditToDoItemWindow(id);
-            //editToDoItemWindow.ShowDialog();
+            ToDoItem selectedRecord = xamlDataGrid.SelectedItem as ToDoItem;
+            AddTask_Window w = new AddTask_Window(selectedRecord);
+            w.ShowDialog();
         }
 
         private void DeleteBtn_Click(object sender, RoutedEventArgs e)
