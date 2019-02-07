@@ -18,11 +18,13 @@ namespace ProjektProgramowanie
             InitializeComponent();
             LoadDbData();
         }
+
         private void LoadDbData()
         {
             xamlDataGrid.ItemsSource = db.ToDoItems.ToList();
             dataGrid = xamlDataGrid;
         }
+
         private void WorkerBtn_Click(object sender, RoutedEventArgs e)
         {
             Workers_Window w = new Workers_Window();

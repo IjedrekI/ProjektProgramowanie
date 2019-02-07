@@ -21,7 +21,7 @@ namespace ProjektProgramowanie
     /// </summary>
     public partial class Workers_Window : Window
     {
-        ToDoContext context = new ToDoContext();
+        ToDoContext db = new ToDoContext();
         public static DataGrid dataGrid;
 
         public Workers_Window()
@@ -32,7 +32,7 @@ namespace ProjektProgramowanie
 
         private void LoadDbData()
         {
-            xamlDataGrid.ItemsSource = context.Workers.ToList();
+            xamlDataGrid.ItemsSource = db.Workers.ToList();
             dataGrid = xamlDataGrid;
         }
 
@@ -44,19 +44,19 @@ namespace ProjektProgramowanie
 
         private void UpdateBtn_Click(object sender, RoutedEventArgs e)
         {
-            var selectedRecord = xamlDataGrid.SelectedItem as Worker;
-            //AddWorker_Window w = new AddWorker_Window(selectedRecord);
-            //w.ShowDialog();
+            Worker selectedRecord = xamlDataGrid.SelectedItem as Worker;
+            AddWorker_Window w = new AddWorker_Window(selectedRecord);
+            w.ShowDialog();
         }
 
         private void DeleteBtn_Click(object sender, RoutedEventArgs e)
         {
             int id = (xamlDataGrid.SelectedItem as Worker).Id;
-            var deleteItem = context.Workers.Where(item => item.Id == id).Single();
-            context.Workers.Remove(deleteItem);
-            context.SaveChanges();
-            xamlDataGrid.ItemsSource = context.Workers.ToList();
-            MainWindow.dataGrid.ItemsSource = context.ToDoItems.ToList();
+            var deleteItem = db.Workers.Where(item => item.Id == id).Single();
+            db.Workers.Remove(deleteItem);
+            db.SaveChanges();
+            xamlDataGrid.ItemsSource = db.Workers.ToList();
+            MainWindow.dataGrid.ItemsSource = db.ToDoItems.ToList();
         }
     }
 }

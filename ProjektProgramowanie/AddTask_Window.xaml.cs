@@ -15,7 +15,7 @@ namespace ProjektProgramowanie
     /// </summary>
     public partial class AddTask_Window : Window
     {
-        ToDoContext context = new ToDoContext();
+        static ToDoContext db = new ToDoContext();
         private ToDoItem item;
         private bool isEdited;
 
@@ -31,12 +31,10 @@ namespace ProjektProgramowanie
             LoadAvailableWorkers();
             item = selectedItem;
             isEdited = true;
-
             Title = "Edit a task";
-
             LoadDefaultInputValues(item);
         }
-        private void AddBtn_Click(object sender, RoutedEventArgs e)
+        private void OkBtn_Click(object sender, RoutedEventArgs e)
         {
             if (!isEdited)
             {
@@ -44,9 +42,9 @@ namespace ProjektProgramowanie
             }
               
             SaveInputDataToObj(item);
-            context.ToDoItems.AddOrUpdate(item);
-            context.SaveChanges();
-            MainWindow.dataGrid.ItemsSource = context.ToDoItems.ToList();
+            db.ToDoItems.AddOrUpdate(item);
+            db.SaveChanges();
+            MainWindow.dataGrid.ItemsSource = db.ToDoItems.ToList();
             Hide();
         }
         private void SaveInputDataToObj(ToDoItem item)  //add validation
@@ -59,11 +57,11 @@ namespace ProjektProgramowanie
             item.Quantity = int.Parse(quantityInput.Text);
             item.Notes = notesInput.Text;
             item.Date = dateInput.SelectedDate.Value.Date;
-            item.WorkerId = 6; //hardcoded
+            item.WorkerId = 0; //hardcoded
         }
         private void LoadAvailableWorkers()
         {
-            var workerList = (from w in context.Workers
+            var workerList = (from w in db.Workers
                       select w).ToList();
             workerInput.ItemsSource = workerList;
             workerInput.DisplayMemberPath = "Name";
