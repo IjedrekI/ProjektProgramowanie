@@ -1,5 +1,6 @@
 ﻿using ProjektProgramowanie.Infrastructure;
 using ProjektProgramowanie.Infrastructure.Entities;
+using System.Data.Entity.Migrations;
 using System;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -15,75 +16,50 @@ namespace ProjektProgramowanie
     public partial class AddTask_Window : Window
     {
         ToDoContext context = new ToDoContext();
-        private ToDoItem selectedRecord;
-        bool isEdited = false;
+        private ToDoItem item;
+        private bool isEdited;
 
         public AddTask_Window()//Add item
         {
             InitializeComponent();
             LoadAvailableWorkers();
+            isEdited = false;
         }
-        public AddTask_Window(ToDoItem selectedRecord)//Edit item
+        public AddTask_Window(ToDoItem selectedItem)//Edit item
         {
             InitializeComponent();
             LoadAvailableWorkers();
-            this.selectedRecord = selectedRecord;
-
+            item = selectedItem;
             isEdited = true;
+
             Title = "Edit a task";
 
-            //load data to inputs
-            nameInput.Text = selectedRecord.Name;
-            //shopInput.SelectedItem = selectedRecord.Shop;
-            quantityInput.Text = selectedRecord.Quantity.ToString();
-            notesInput.Text = selectedRecord.Notes;
-            dateInput.SelectedDate = selectedRecord.Date;
-            workerInput.SelectedItem = selectedRecord.WorkerId;
-
+            LoadDefaultInputValues(item);
         }
         private void AddBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (!isEdited)
+            {
+                item = new ToDoItem();
+            }
+              
+            SaveInputDataToObj(item);
+            context.ToDoItems.AddOrUpdate(item);
+            context.SaveChanges();
+            MainWindow.dataGrid.ItemsSource = context.ToDoItems.ToList();
+            Hide();
+        }
+        private void SaveInputDataToObj(ToDoItem item)  //add validation
         {
             var shopInString = shopInput.Text;
             Enum.TryParse(shopInString, out Shop shop);
 
-            Worker hardCodedWorker = new Worker()
-            {
-                Name = "Stefan"
-            };
-            context.Workers.Add(hardCodedWorker);
-
-            if (isEdited)
-            {
-                selectedRecord.Name = nameInput.Text;
-                selectedRecord.Shop = shop;
-                selectedRecord.Quantity = int.Parse(quantityInput.Text);
-                selectedRecord.Notes = notesInput.Text;
-                selectedRecord.Date = dateInput.SelectedDate.Value.Date;
-                selectedRecord.WorkerId = hardCodedWorker.Id;
-            
-            } else
-            {
-                ToDoItem item = new ToDoItem() //add validation
-                {
-                    //Name = nameInput.Text,
-                    //Shop = shop,
-                    //Quantity = int.Parse(quantityInput.Text),
-                    //Notes = notesInput.Text,
-                    //Date = dateInput.SelectedDate.Value.Date,
-                    //WorkerId = hardCodedWorker.Id
-                };
-                item.Name = nameInput.Text;
-                item.Shop = shop;
-                item.Quantity = int.Parse(quantityInput.Text);
-                item.Notes = notesInput.Text;
-                item.Date = dateInput.SelectedDate.Value.Date;
-                item.WorkerId = hardCodedWorker.Id;
-                context.ToDoItems.Add(item);
-            }
-
-            context.SaveChanges();
-            MainWindow.dataGrid.ItemsSource = context.ToDoItems.ToList();
-            Hide();
+            item.Name = nameInput.Text;
+            item.Shop = shop;
+            item.Quantity = int.Parse(quantityInput.Text);
+            item.Notes = notesInput.Text;
+            item.Date = dateInput.SelectedDate.Value.Date;
+            item.WorkerId = 6; //hardcoded
         }
         private void LoadAvailableWorkers()
         {
@@ -96,6 +72,15 @@ namespace ProjektProgramowanie
         {
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
+        }
+        private void LoadDefaultInputValues(ToDoItem selectedItem)
+        {
+            nameInput.Text = selectedItem.Name;
+            shopInput.SelectedItem = selectedItem.Shop;
+            quantityInput.Text = selectedItem.Quantity.ToString();
+            notesInput.Text = selectedItem.Notes;
+            dateInput.SelectedDate = selectedItem.Date;
+            workerInput.SelectedItem = selectedItem.WorkerId;
         }
     }
 }

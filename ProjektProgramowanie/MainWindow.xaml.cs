@@ -10,7 +10,6 @@ namespace ProjektProgramowanie
     /// </summary>
     public partial class MainWindow : Window
     {
-
         ToDoContext db = new ToDoContext();
         public static DataGrid dataGrid;
 
