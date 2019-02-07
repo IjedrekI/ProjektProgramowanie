@@ -3,7 +3,6 @@ using ProjektProgramowanie.Infrastructure.Entities;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Windows;
-using System.Windows.Input;
 
 namespace ProjektProgramowanie
 {
@@ -31,17 +30,24 @@ namespace ProjektProgramowanie
         }
         private void OkBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (!isEdited)
+            if (AreInputsValid())
             {
-                worker = new Worker();
-            }
+                if (!isEdited)
+                {
+                    worker = new Worker();
+                }
 
-            SaveInputDataToObj(worker);
-            db.Workers.AddOrUpdate(worker);
-            db.SaveChanges();
-            Workers_Window.dataGrid.ItemsSource = db.Workers.ToList();
-            MainWindow.dataGrid.ItemsSource = db.ToDoItems.ToList();
-            Hide();
+                SaveInputDataToObj(worker);
+                db.Workers.AddOrUpdate(worker);
+                db.SaveChanges();
+                Workers_Window.dataGrid.ItemsSource = db.Workers.ToList();
+                MainWindow.dataGrid.ItemsSource = db.ToDoItems.ToList();
+                Hide();
+            }
+            else
+            {
+                MessageBox.Show("Plese complete all data");
+            }
         }
         private void SaveInputDataToObj(Worker worker)
         {
@@ -50,6 +56,10 @@ namespace ProjektProgramowanie
         private void LoadDefaultInputValues(Worker selectedWorker)
         {
             nameInput.Text = selectedWorker.Name;
+        }
+        private bool AreInputsValid()
+        {
+            return (nameInput.Text != "");
         }
     }
 }

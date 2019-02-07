@@ -36,16 +36,23 @@ namespace ProjektProgramowanie
         }
         private void OkBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (!isEdited)
+            if (AreInputsValid())
             {
-                item = new ToDoItem();
+                if (!isEdited)
+                {
+                    item = new ToDoItem();
+                }
+
+                SaveInputDataToObj(item);
+                db.ToDoItems.AddOrUpdate(item);
+                db.SaveChanges();
+                MainWindow.dataGrid.ItemsSource = db.ToDoItems.ToList();
+                Hide();
             }
-              
-            SaveInputDataToObj(item);
-            db.ToDoItems.AddOrUpdate(item);
-            db.SaveChanges();
-            MainWindow.dataGrid.ItemsSource = db.ToDoItems.ToList();
-            Hide();
+            else
+            {
+                MessageBox.Show("Plese complete all data");
+            }
         }
         private void SaveInputDataToObj(ToDoItem item)  //add validation
         {
@@ -57,7 +64,7 @@ namespace ProjektProgramowanie
             item.Quantity = int.Parse(quantityInput.Text);
             item.Notes = notesInput.Text;
             item.Date = dateInput.SelectedDate.Value.Date;
-            item.WorkerId = 0; //hardcoded
+            item.WorkerId = 6; //hardcoded
         }
         private void LoadAvailableWorkers()
         {
@@ -79,6 +86,15 @@ namespace ProjektProgramowanie
             notesInput.Text = selectedItem.Notes;
             dateInput.SelectedDate = selectedItem.Date;
             workerInput.SelectedItem = selectedItem.WorkerId;
+        }
+        private bool AreInputsValid()
+        {
+            return (nameInput.Text != ""
+                && shopInput.SelectedItem != null
+                && quantityInput.Text != ""
+                && notesInput.Text != ""
+                && dateInput.SelectedDate != null
+                && workerInput.SelectedItem != null);
         }
     }
 }
