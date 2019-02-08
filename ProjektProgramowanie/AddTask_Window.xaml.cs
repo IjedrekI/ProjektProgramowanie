@@ -23,12 +23,14 @@ namespace ProjektProgramowanie
         {
             InitializeComponent();
             LoadAvailableWorkers();
+            LoadShops();
             isEdited = false;
         }
         public AddTask_Window(ToDoItem selectedItem)//Edit item
         {
             InitializeComponent();
             LoadAvailableWorkers();
+            LoadShops();
             item = selectedItem;
             isEdited = true;
             Title = "Edit a task";
@@ -73,6 +75,10 @@ namespace ProjektProgramowanie
             workerInput.DisplayMemberPath = "Name";
             workerInput.SelectedValuePath = "Id";
         }
+        private void LoadShops()
+        {
+            shopInput.ItemsSource = Enum.GetValues(typeof(Shop));
+        }
 
         private void LoadDefaultInputValues(ToDoItem selectedItem)
         {
@@ -81,7 +87,7 @@ namespace ProjektProgramowanie
             quantityInput.Text = selectedItem.Quantity.ToString();
             notesInput.Text = selectedItem.Notes;
             dateInput.SelectedDate = selectedItem.Date;
-            workerInput.SelectedItem = selectedItem.WorkerId;
+            workerInput.SelectedValue = selectedItem.WorkerId;
         }
 
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
