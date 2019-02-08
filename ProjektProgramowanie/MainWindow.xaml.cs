@@ -33,8 +33,15 @@ namespace ProjektProgramowanie
 
         private void InsertBtn_Click(object sender, RoutedEventArgs e)
         {
-            AddTask_Window w = new AddTask_Window();
-            w.ShowDialog();
+            if (IsAnyWorkerInDb())
+            {
+                AddTask_Window w = new AddTask_Window();
+                w.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("You have to add a worker before creating a task", Title);
+            }
         }
 
         private void UpdateBtn_Click(object sender, RoutedEventArgs e)
@@ -51,6 +58,11 @@ namespace ProjektProgramowanie
             db.ToDoItems.Remove(deleteItem);
             db.SaveChanges();
             xamlDataGrid.ItemsSource = db.ToDoItems.ToList();
+        }
+        private bool IsAnyWorkerInDb()
+        {
+            var workerNum = db.Workers.ToArray();
+            return (workerNum.Length > 0);
         }
     }
 }
