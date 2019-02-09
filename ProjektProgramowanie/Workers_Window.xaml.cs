@@ -58,5 +58,10 @@ namespace ProjektProgramowanie
             xamlDataGrid.ItemsSource = db.Workers.ToList();
             MainWindow.dataGrid.ItemsSource = db.ToDoItems.ToList();
         }
+        private void FindBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var w = new FindWorker_Window();
+            w.Show();
+        }
     }
 }
