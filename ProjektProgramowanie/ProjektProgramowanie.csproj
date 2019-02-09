@@ -71,6 +71,9 @@
     <Compile Include="AddWorker_Window.xaml.cs">
       <DependentUpon>AddWorker_Window.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FindWorker_Window.xaml.cs">
+      <DependentUpon>FindWorker_Window.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\201902021605017_init1.cs" />
     <Compile Include="Migrations\201902021605017_init1.Designer.cs">
       <DependentUpon>201902021605017_init1.cs</DependentUpon>
@@ -87,6 +90,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddWorker_Window.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FindWorker_Window.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
