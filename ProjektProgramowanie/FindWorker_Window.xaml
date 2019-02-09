@@ -21,6 +21,6 @@
         <TextBox Text="Type name here" Name="nameInput" Grid.Row="0" Grid.Column="1" TextWrapping="Wrap" Width="300" VerticalAlignment="Top"/>
 
         <Button x:Name="findBtn" Content="Search" Click="findBtn_Click" Grid.Row="1" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="60"/>
-        <TextBox x:Name="ifFound" HorizontalAlignment="Left" Height="41" Margin="10,59.667,0,-59.333" Grid.Row="1" TextWrapping="Wrap" Text="Worker: " VerticalAlignment="Top" Width="300" Grid.Column="1"/>
+        <TextBox x:Name="ifFound" HorizontalAlignment="Left" Height="41" Margin="10,59.667,0,-59.333" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="300" Grid.Column="1"/>
     </Grid>
 </Window>
