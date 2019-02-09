@@ -7,18 +7,18 @@
         mc:Ignorable="d"
         Title="Workers" Height="450" Width="500">
     <StackPanel>
-        <Grid Margin="10">
+
+        <Grid Margin="10,10,10.333,10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-
             </Grid.ColumnDefinitions>
             <TextBlock Text="Workers" FontSize="20" Grid.Column="0"/>
             <Button x:Name="findBtn" Content="Find Worker" Click="FindBtn_Click" Grid.Column="2" Margin="0 0 10 0" Padding="10 0"/>
             <Button x:Name="insertBtn" Content="Add a new worker" Click="InsertBtn_Click" Grid.Column="3" Margin="0 0 10 0" Padding="10 0"/>
         </Grid>
+
         <DockPanel>
             <DataGrid x:Name="xamlDataGrid" x:FieldModifier="public" AutoGenerateColumns="False" ColumnWidth="*" IsReadOnly="True">
                 <DataGrid.Columns>
@@ -33,7 +33,7 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <Button x:Name="updateBtn" Content="Edit" Click="UpdateBtn_Click"/>
+                                    <Button  x:Name="updateBtn" Content="Edit" Click="UpdateBtn_Click"/>
                                     <Button x:Name="deleteBtn" Content="Delete" Click="DeleteBtn_Click"/>
                                 </StackPanel>
                             </DataTemplate>
@@ -42,5 +42,8 @@
                 </DataGrid.Columns>
             </DataGrid>
         </DockPanel>
+        <Button Content="Next" HorizontalAlignment="Left" Margin="150,200,0,-250" VerticalAlignment="Top" Width="75" Click="NextPage_Click"/>
+        <Button Content="Previous" HorizontalAlignment="Left" Margin="250,200,0,-250" VerticalAlignment="Top" Width="75" Click="PreviousPage_Click" />
+
     </StackPanel>
 </Window>

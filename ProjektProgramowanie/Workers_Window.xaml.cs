@@ -21,18 +21,28 @@ namespace ProjektProgramowanie
     /// </summary>
     public partial class Workers_Window : Window
     {
-        ToDoContext db = new ToDoContext();
+        ToDoContext dB = new ToDoContext();
         public static DataGrid dataGrid;
+
+        private int _page = 1;
+
 
         public Workers_Window()
         {
             InitializeComponent();
-            LoadDbData();
+            LoadDbData(_page);
         }
 
-        private void LoadDbData()
+        private void LoadDbData(int pageNumber)
         {
-            xamlDataGrid.ItemsSource = db.Workers.ToList();
+            xamlDataGrid.ItemsSource = null;
+            var pageSize = 3; //shows 3 elements per page
+            var skip = pageSize * (pageNumber - 1);
+
+            xamlDataGrid.ItemsSource = dB.Workers.ToList()
+                .Skip(skip)
+                .Take(pageSize);
+
             dataGrid = xamlDataGrid;
         }
 
@@ -52,11 +62,25 @@ namespace ProjektProgramowanie
         private void DeleteBtn_Click(object sender, RoutedEventArgs e)
         {
             int id = (xamlDataGrid.SelectedItem as Worker).Id;
-            var deleteItem = db.Workers.Where(item => item.Id == id).Single();
-            db.Workers.Remove(deleteItem);
-            db.SaveChanges();
-            xamlDataGrid.ItemsSource = db.Workers.ToList();
-            MainWindow.dataGrid.ItemsSource = db.ToDoItems.ToList();
+            var deleteItem = dB.Workers.Where(item => item.Id == id).Single();
+            dB.Workers.Remove(deleteItem);
+            dB.SaveChanges();
+            xamlDataGrid.ItemsSource = dB.Workers.ToList();
+            MainWindow.dataGrid.ItemsSource = dB.ToDoItems.ToList();
+        }
+
+        private void NextPage_Click(object sender, RoutedEventArgs e)
+        {
+            _page++;
+            LoadDbData(_page);
+        }
+
+        private void PreviousPage_Click(object sender, RoutedEventArgs e)
+        {
+            if (_page == 1)
+                return;
+            _page--;
+            LoadDbData(_page);
         }
         private void FindBtn_Click(object sender, RoutedEventArgs e)
         {
