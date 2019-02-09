@@ -1,19 +1,12 @@
 ﻿using ProjektProgramowanie.Infrastructure;
 using ProjektProgramowanie.Infrastructure.Entities;
+using System.Data.Entity.Migrations;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+
 
 namespace ProjektProgramowanie
 {
@@ -22,51 +15,98 @@ namespace ProjektProgramowanie
     /// </summary>
     public partial class AddTask_Window : Window
     {
-        ToDoContext context = new ToDoContext();
+        static ToDoContext db = new ToDoContext();
+        private ToDoItem item;
+        private bool isEdited;
 
-        public AddTask_Window()
+        public AddTask_Window()//Add item
         {
             InitializeComponent();
             LoadAvailableWorkers();
+            LoadShops();
+            isEdited = false;
         }
-        private void AddBtn_Click(object sender, RoutedEventArgs e)
+        public AddTask_Window(ToDoItem selectedItem)//Edit item
         {
-            var shopInString = shopInput.Text;
-            Enum.TryParse(shopInString, out Shop shop);
-
-            Worker hardCodedWorker = new Worker()
-            {
-                Name = "Stefan"
-            };
-            context.Workers.Add(hardCodedWorker);
-
-            ToDoItem item = new ToDoItem() //add validation
-            {
-                Name = nameInput.Text,
-                Shop = shop,
-                Quantity = int.Parse(quantityInput.Text),
-                Notes = notesInput.Text,
-                Date = dateInput.SelectedDate.Value.Date,
-                WorkerId = hardCodedWorker.Id
-            };
-
-
-            context.ToDoItems.Add(item);
-            context.SaveChanges();
-            MainWindow.dataGrid.ItemsSource = context.ToDoItems.ToList();
-            Hide();
+            InitializeComponent();
+            LoadAvailableWorkers();
+            LoadShops();
+            item = selectedItem;
+            isEdited = true;
+            Title = "Edit a task";
+            LoadDefaultInputValues(item);
         }
+        private void OkBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (AreInputsValid())
+            {
+                if (!isEdited)
+                {
+                    item = new ToDoItem();
+                }
+
+                SaveInputDataToObj(item);
+                db.ToDoItems.AddOrUpdate(item);
+                db.SaveChanges();
+                MainWindow.dataGrid.ItemsSource = db.ToDoItems.ToList();
+                Hide();
+            }
+            else
+            {
+                MessageBox.Show("Plese complete all data");
+            }
+        }
+
+        private bool AreInputsValid()
+        {
+            return (nameInput.Text != ""
+                && shopInput.SelectedItem != null
+                && quantityInput.Text != ""
+                && notesInput.Text != ""
+                && dateInput.SelectedDate != null
+                && workerInput.SelectedItem != null);
+        }
+
+        private void LoadAvailableWorkers()
+        {
+            var workerList = (from w in db.Workers
+                      select w).ToList();
+            workerInput.ItemsSource = workerList;
+            workerInput.DisplayMemberPath = "Name";
+            workerInput.SelectedValuePath = "Id";
+        }
+        private void LoadShops()
+        {
+            shopInput.ItemsSource = Enum.GetValues(typeof(Shop));
+        }
+
+        private void LoadDefaultInputValues(ToDoItem selectedItem)
+        {
+            nameInput.Text = selectedItem.Name;
+            shopInput.SelectedItem = selectedItem.Shop;
+            quantityInput.Text = selectedItem.Quantity.ToString();
+            notesInput.Text = selectedItem.Notes;
+            dateInput.SelectedDate = selectedItem.Date;
+            workerInput.SelectedValue = selectedItem.WorkerId;
+        }
+
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
-        private void LoadAvailableWorkers()
+
+        private void SaveInputDataToObj(ToDoItem item)  //add validation
         {
-            var workerList = (from w in context.Workers
-                      select w).ToList();
-            workerInput.ItemsSource = workerList;
-            workerInput.DisplayMemberPath = "Name";
+            var shopInString = shopInput.Text;
+            Enum.TryParse(shopInString, out Shop shop);
+
+            item.Name = nameInput.Text;
+            item.Shop = shop;
+            item.Quantity = int.Parse(quantityInput.Text);
+            item.Notes = notesInput.Text;
+            item.Date = dateInput.SelectedDate.Value.Date;
+            item.WorkerId = int.Parse(workerInput.SelectedValue.ToString());
         }
     }
 }

@@ -26,14 +26,7 @@
         <TextBox Name="nameInput" Grid.Row="0" Grid.Column="1" TextWrapping="Wrap" Width="300" VerticalAlignment="Top"/>
 
         <TextBlock Text="Shop" Grid.Row="1" Grid.Column="0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="shopInput" Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Margin="0,0,151,0">
-            <ComboBox.Items>
-                <ComboBoxItem>Bakery</ComboBoxItem>
-                <ComboBoxItem>Book Shop</ComboBoxItem>
-                <ComboBoxItem>Butcher</ComboBoxItem>
-                <ComboBoxItem>Hypermarket</ComboBoxItem>
-            </ComboBox.Items>
-        </ComboBox>
+        <ComboBox x:Name="shopInput" Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Margin="0,0,151,0"/>
 
         <TextBlock Text="Quantity" Grid.Row="2" Grid.Column="0" VerticalAlignment="Top"/>
         <TextBox Name="quantityInput" PreviewTextInput="NumberValidationTextBox" MaxLength="2" Grid.Row="2" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100"/>
@@ -47,6 +40,6 @@
         <TextBlock Text="Worker" Grid.Row="5" Grid.Column="0" VerticalAlignment="Top"/>
         <ComboBox x:Name="workerInput" Grid.Row="5" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200"/>
 
-        <Button x:Name="okBtn" Content="OK" Click="AddBtn_Click" Grid.Row="6" Grid.Column="6" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="60"/>
+        <Button x:Name="okBtn" Content="OK" Click="OkBtn_Click" Grid.Row="6" Grid.Column="6" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="60"/>
     </Grid>
 </Window>

@@ -19,6 +19,6 @@
         <TextBlock Text="Name" Grid.Row="0" Grid.Column="0" VerticalAlignment="Top"/>
         <TextBox Name="nameInput" Grid.Row="0" Grid.Column="1" TextWrapping="Wrap" Width="300" VerticalAlignment="Top"/>
 
-        <Button x:Name="okBtn" Content="OK" Click="AddBtn_Click" Grid.Row="1" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="60"/>
+        <Button x:Name="okBtn" Content="OK" Click="OkBtn_Click" Grid.Row="1" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="60"/>
     </Grid>
 </Window>

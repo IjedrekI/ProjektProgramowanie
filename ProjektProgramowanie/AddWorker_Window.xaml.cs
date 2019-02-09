@@ -1,8 +1,8 @@
 ﻿using ProjektProgramowanie.Infrastructure;
 using ProjektProgramowanie.Infrastructure.Entities;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Windows;
-
 
 namespace ProjektProgramowanie
 {
@@ -11,24 +11,55 @@ namespace ProjektProgramowanie
     /// </summary>
     public partial class AddWorker_Window : Window
     {
-        public AddWorker_Window()
+        private Worker worker;
+        private bool isEdited;
+        ToDoContext db = new ToDoContext();
+
+        public AddWorker_Window() //Adding worker
         {
             InitializeComponent();
+            isEdited = false;
         }
-        private void AddBtn_Click(object sender, RoutedEventArgs e)
+        public AddWorker_Window(Worker selectedWorker) //Editing worker
         {
-            var context = new ToDoContext();
-
-            Worker worker = new Worker()
+            InitializeComponent();
+            worker = selectedWorker;
+            isEdited = true;
+            Title = "Edit a worker";
+            LoadDefaultInputValues(worker);
+        }
+        private void OkBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (AreInputsValid())
             {
-                Name = nameInput.Text
-            };
+                if (!isEdited)
+                {
+                    worker = new Worker();
+                }
 
-            context.Workers.Add(worker);
-            context.SaveChanges();
-            Workers_Window.dataGrid.ItemsSource = context.Workers.ToList();
-            //MainWindow.dataGrid.ItemsSource = context.ToDoItems.ToList();
-            Hide();
+                SaveInputDataToObj(worker);
+                db.Workers.AddOrUpdate(worker);
+                db.SaveChanges();
+                Workers_Window.dataGrid.ItemsSource = db.Workers.ToList();
+                MainWindow.dataGrid.ItemsSource = db.ToDoItems.ToList();
+                Hide();
+            }
+            else
+            {
+                MessageBox.Show("Plese complete all data");
+            }
+        }
+        private void SaveInputDataToObj(Worker worker)
+        {
+            worker.Name = nameInput.Text;
+        }
+        private void LoadDefaultInputValues(Worker selectedWorker)
+        {
+            nameInput.Text = selectedWorker.Name;
+        }
+        private bool AreInputsValid()
+        {
+            return (nameInput.Text != "");
         }
     }
 }
