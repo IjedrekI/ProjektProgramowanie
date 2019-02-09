@@ -82,5 +82,10 @@ namespace ProjektProgramowanie
             _page--;
             LoadDbData(_page);
         }
+        private void FindBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var w = new FindWorker_Window();
+            w.Show();
+        }
     }
 }
