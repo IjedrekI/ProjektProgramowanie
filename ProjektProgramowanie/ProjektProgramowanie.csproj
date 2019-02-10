@@ -79,9 +79,6 @@
       <DependentUpon>201902021605017_init1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="ToDoList.xaml.cs">
-      <DependentUpon>ToDoList.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Workers_Window.xaml.cs">
       <DependentUpon>Workers_Window.xaml</DependentUpon>
     </Compile>
@@ -108,16 +105,11 @@
     <Compile Include="Infrastructure\Entities\Shop.cs" />
     <Compile Include="Infrastructure\Entities\ToDoItem.cs" />
     <Compile Include="Infrastructure\Entities\Worker.cs" />
-    <Compile Include="Infrastructure\Exel\ExportDataToExcel.cs" />
     <Compile Include="Infrastructure\ToDoContext.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="ToDoList.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Workers_Window.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
