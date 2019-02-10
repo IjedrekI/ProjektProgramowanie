@@ -5,12 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjektProgramowanie"
         mc:Ignorable="d"
-        Title="Is Worker in Database?" SizeToContent="WidthAndHeight" Height="300" Width="500">
+        Title="Is Worker in Database?" SizeToContent="WidthAndHeight" Height="300" Width="550">
 
-    <Grid Margin="10,10,10,10" HorizontalAlignment="Right" Width="450">
+    <Grid Margin="10,10,10,10" HorizontalAlignment="Right" Width="500">
         <Grid.RowDefinitions>
             <RowDefinition Height="40" />
             <RowDefinition Height="40" />
+            <RowDefinition Height="89*"/>
+            <RowDefinition Height="82*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="140"/>
@@ -18,9 +20,9 @@
         </Grid.ColumnDefinitions>
 
         <TextBlock Text="Name" Grid.Row="0" Grid.Column="0" VerticalAlignment="Top"/>
-        <TextBox Text="Type name here" Name="nameInput" Grid.Row="0" Grid.Column="1" TextWrapping="Wrap" Width="300" VerticalAlignment="Top"/>
+        <TextBox Text="Type name here" Name="nameInput" Grid.Row="0" Grid.Column="1" TextWrapping="Wrap" Width="300" VerticalAlignment="Top" Margin="5,0"/>
 
-        <Button x:Name="findBtn" Content="Search" Click="findBtn_Click" Grid.Row="1" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="60"/>
-        <TextBox x:Name="ifFound" HorizontalAlignment="Left" Height="41" Margin="10,59.667,0,-59.333" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="300" Grid.Column="1"/>
+        <Button x:Name="findBtn" Content="Search" Click="findBtn_Click" Grid.Row="1" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="60" Margin="0,0,1.667,10"/>
+        <TextBox x:Name="ifFound" HorizontalAlignment="Left" Height="41" Margin="10,21,0,0" Grid.Row="2" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="300" Grid.Column="1"/>
     </Grid>
 </Window>

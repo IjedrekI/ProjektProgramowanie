@@ -17,6 +17,7 @@
             <TextBlock Text="Workers" FontSize="20" Grid.Column="0"/>
             <Button x:Name="findBtn" Content="Find Worker" Click="FindBtn_Click" Grid.Column="2" Margin="0 0 10 0" Padding="10 0"/>
             <Button x:Name="insertBtn" Content="Add a new worker" Click="InsertBtn_Click" Grid.Column="3" Margin="0 0 10 0" Padding="10 0"/>
+            <Button Content="Check in db" Grid.Column="1" HorizontalAlignment="Left"  Margin="210,0,0,0" Padding="10 0" Click="FindBtn_Click"/>
         </Grid>
 
         <DockPanel>
